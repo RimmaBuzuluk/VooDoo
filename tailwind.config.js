@@ -9,6 +9,7 @@ module.exports = {
       padding:{
         'paddingX': '120px',
         'paddingTop': '48px'
+        
       },
       width:{
         'widthV':'45px',
@@ -21,8 +22,12 @@ module.exports = {
         'heightV':'45px',
         'heightVooDoo':'97.88px',
         'heightShop':'20px',
-        'bigBut':'38px'
-      }
+        'itemHeight': '402px'
+      },
+      fontSize: {
+        'custom': '14px',
+      },
+
 
     },
   },

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css">
 </head>
 <body class="bg-mainColor min-h-screen flex flex-col container mx-auto">
-    <div class="flex justify-between pt-8">
+    <header class="flex justify-between pt-8">
         <div class="flex">
             <div class="w-widthV h-heightV">
                 <img src="./img/_2C.png" alt="">
@@ -20,10 +20,10 @@
             <div class="w-widthShop h-heightShop">
                 <img src="./img/shopping-cart (1) 1.png" alt="">
             </div>
-            <button class="w-24 h-9 bg-black text-white rounded ml-12">Sign-up</button>
+            <button class="w-24 h-9 bg-black hover:bg-blue-700 text-white rounded ml-12">Sign-up</button>
         </div>
-    </div>
-    <main class="flex-grow-1 mt-20">
+    </header>
+    <main class="flex-grow-1 mt-20 text-custom">
         <div class="bg-black  h-16 flex">
             <div class="flex items-center justify-center ml-6">
                 <img src="/img/alert-circle.png" alt="">
@@ -31,11 +31,51 @@
             <div class="text-white flex items-center ml-4">ALPHA</div>
             <div class="text-white flex items-center ml-28">Important info regarding our service</div>
         </div>
-        <div class="items-container">
-            <!-- Это место предназначено для отображения товаров -->
-          </div>
+        <div class="items-container mt-12  ">
+                <!-- Это место предназначено для отображения товаров -->
+                <div class="item w-full md:w-1/4 lg:w-1/4 p-1 mb-16 bg-black">
+                    <div class="rounded" style="height: 300px; border: 1px solid black;">
+                        <div class="toggle-content hidden">
+                            <p>Description: This is the product description.</p>
+                            <p>Price: $20.00</p>
+                        </div>
+                    </div>
+                    <!-- <div class="flex h-9 mt-3 mb-3 justify-between">
+                        <div class="font-bold" style="font-size: 10px;">
+                            <div>Product name</div>
+                            <div>Product Title</div>
+                        </div>
+                        <div class="text-right" style="font-size: 14px;">
+                            <div>Condition</div>
+                            <div>Product Handle</div>
+                        </div>
+                    </div>
+                    <button class="toggle-button bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded w-full">
+                        Toggle Info
+                    </button> -->
+                </div>
+        </div>
+        <div class="mb-24">
+                ПЕРЕХІД НА ІНЩІ СТОРІНКИ
+        </div>
+            
     </main>
-    <footer class="bg-gray-300 py-4 fixed bottom-0 w-full">footer</footer>
-    <script src="script/script.js"></script>
+    <footer class="bg-gray-300 py-4 fixed bottom-0 w-full ">
+        <div class="container mx-auto">
+            footer content
+        </div>
+    </footer>
+    <script src="script/script.js">
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButtons = document.querySelectorAll('.toggle-button');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const toggleContent = button.previousElementSibling.querySelector('.toggle-content');
+                    toggleContent.classList.toggle('show');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
