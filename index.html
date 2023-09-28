@@ -52,13 +52,20 @@
     </footer>
     <!--елемент що буде зявлятись коли ми натискаємо на кошик-->
     <div id="cartOverlay" class="hidden bg-black absolute w-96 h-screen right-0 text-white">
-        <div>
-            <div class="flex justify-between">
-                <div>Shopping Cart</div>
-                <div>
-                    <img src="./img/close-line.png" id="closeButton" >
+        <div class="mt-12 mx-9">
+            <div >
+                <div class="flex justify-between">
+                    <div>Shopping Cart</div>
+                    <div>
+                        <img src="./img/close-line.png" id="closeButton" >
+                    </div>
                 </div>
             </div>
+            <div class="bg-white h-0.5 w-full"></div>
+            <div id="cartItem" class="mt-10 hidden bg-blue-700 h-3">
+                <!--тут повинні бути елементи які ми доаємо в корзину-->
+            </div>
+            <div class="bg-white h-0.5 w-full"></div>
         </div>
     </div>
     <script src="script/script.js">
