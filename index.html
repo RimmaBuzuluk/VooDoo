@@ -17,9 +17,13 @@
             </div>
         </div>
         <div class="flex">
+            <!-- ///////////////////////////// -->
             <div class="w-widthShop h-heightShop">
-                <img src="./img/shopping-cart (1) 1.png" alt="">
+                <button id="cartButton">
+                    <img src="./img/shopping-cart (1) 1.png" alt="">
+                </button>
             </div>
+            <!-- //////////////////////////// -->
             <button class="w-24 h-9 bg-black hover:bg-blue-700 text-white rounded ml-12">Sign-up</button>
         </div>
     </header>
@@ -46,6 +50,18 @@
             footer content
         </div>
     </footer>
-    <script src="script/script.js"></script>
+    <!--елемент що буде зявлятись коли ми натискаємо на кошик-->
+    <div id="cartOverlay" class="hidden bg-black absolute w-96 h-screen right-0 text-white">
+        <div>
+            <div class="flex justify-between">
+                <div>Shopping Cart</div>
+                <div>
+                    <img src="./img/close-line.png" id="closeButton" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script/script.js">
+    </script>
 </body>
 </html>
