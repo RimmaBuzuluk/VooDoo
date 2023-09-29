@@ -5,6 +5,7 @@ const cartOverlay = document.getElementById('cartOverlay');
 const closeButton = document.getElementById('closeButton');
 let cart=[];
 let items=[];
+const itemQuantities = {}
 
 function displayItems(items){
      // Разбиваем товары на строки, по 4 товара в каждой строке
@@ -71,17 +72,27 @@ function displayCartItems(){
     cart.forEach(itemId => {
         const cartItemDev=document.createElement('div')
         const item =items.find(item=>item.id===itemId)
-
+        
         if(item){
+            const quantity=itemQuantities[item.id]||1
+
             
             const variants=item.variants[0]
             cartItemsContainer.innerHTML += `
-                <div class="cart-item flex justify-between">
+                <div class="cart-item flex justify-between mb-10">
                 <div class="h-20 w-20 rounded" style="border: 1px solid rgb(255, 255, 255);"></div>
-
-                    <div>
+                    <div class="w-56 h-16 ml-4" >
                         <div>${item.title}</div>
                         <div>${variants.price}</div>
+                        <div class="flex">
+                          <button onClick={decreaseQuantity(${itemId})}>
+                            <div class="flex items-center justify-center w-5 h-5"><img src="./img/-.png"></div>
+                          </button>
+                          <div>${quantity}</div>
+                          <button onClick={increaseQuantity(${itemId})}>
+                            <div class="flex items-center justify-center w-5 h-5"><img src="./img/+.png"></div>
+                          </button>
+                        </div>
                     </div>
                     <div>
                         <button onclick="removeFromCart(${itemId})"><img src="./img/Vector.png"></button>
@@ -92,6 +103,36 @@ function displayCartItems(){
     });
 
 }
+
+////increament and decrement
+
+function increaseQuantity(itemId){ 
+  const currentQuantity=itemQuantities[itemId] || 1;
+
+  itemQuantities[itemId]=currentQuantity+1
+  // updateQuantityDisplay(itemId);
+  displayCartItems();
+}
+
+function decreaseQuantity(itemId){
+  const currentQuantity=itemQuantities[itemId] || 1;
+  if(currentQuantity>0){
+    itemQuantities[itemId]=currentQuantity-1
+    // updateQuantityDisplay(itemId);
+    displayCartItems();
+  }
+}
+
+// function updateQuantityDisplay(itemId){
+//   // const quantityElements = document.querySelectorAll(`[data-item-id="${itemId}"] .flex > div:nth-child(2)`);
+
+//   // // Оновлюємо кількість для кожного відображення товару з відповідним itemId
+//   // quantityElements.forEach(element => {
+//   //   element.innerText = quantity;
+   
+//   // });
+
+// }
 
 
 /////////////////відображення всіх елементів json//////////////////////////////
