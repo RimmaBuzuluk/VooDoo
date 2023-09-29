@@ -7,34 +7,19 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
     <style>
-        @media (max-width: 767px) {
-          .items-container {
-            /* background-color: aquamarine; */
-      text-align: center; /* Центрируем элементы в ряду */
-          }
-          .item {
-            display: inline-block;
-      width: 100%; /* Каждый элемент занимает 100% ширины родительского блока */
-      box-sizing: border-box;
-      padding: 10px; /* Примерный отступ между элементами */
-      margin: 0; /* Убираем внешние отступы у элемента */
-        /* background-color: blue; */
-          }
+      /* mobile first */
+      .items-container-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* adjustments for desktop */
+      @media (min-width: 768px) {
+        .items-container-flex {
+          flex-direction: row;
         }
-      
-        @media (min-width: 768px) {
-          .items-container {
-            /* background-color: brown; */
-      text-align: left; /* Выравниваем элементы слева для больших экранов */
-          }
-          .item{
-            /* width: calc(25% - 10px); /* Элемент занимает примерно 1/4 ширины родительского контейнера с отступами */
-        /* box-sizing: border-box;
-        padding: 10px;
-        margin: 0 10px 10px 0; */ 
-        /* background-color: yellow; */
-          }
-        }
+      }
       </style>
 </head>
 <body class="bg-mainColor min-h-screen flex flex-col container mx-auto text-sm" style="font-family: 'Space Grotesk', sans-serif;">

@@ -59,7 +59,7 @@ function displayItems(items){
       `;
     }).join('');
 
-    rows.push(`<div class="flex">${rowItems}</div>`);
+    rows.push(`<div class="items-container-flex">${rowItems}</div>`);
   }
   console.log()
   // itemsContainer.innerHTML="lflfl";
@@ -159,7 +159,7 @@ function displayCartItems(){
         }
     });
 
-    const maxHeight = 700; // Максимальна висота в пікселях
+    const maxHeight = 500; // Максимальна висота в пікселях
   const currentHeight = cartItemsContainer.scrollHeight;
   cartItemsContainer.style.height = currentHeight > maxHeight ? `${maxHeight}px` : 'auto';
 
