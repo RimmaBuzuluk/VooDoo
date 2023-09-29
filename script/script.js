@@ -7,41 +7,88 @@ const totalAmountDiv = document.getElementById('totalAmountDiv')
 let cart=[];
 let items=[];
 const itemQuantities = {}
+let currentPage = 1;
+
 
 function displayItems(items){
      // Разбиваем товары на строки, по 4 товара в каждой строке
      const rows = [];
-     for (let i = 0; i < items.length; i += 4) {
-       const rowItems = items.slice(i, i + 4).map(item => {
-         
-         return `
-           <div class="item w-full md:w-1/4 lg:w-1/4 p-1 mb-16 " style="height: 402px;">
-             <div class="rounded" style="height: 300px; border: 1px solid black;">
-                 <button id="${item.id}" onClick="showItemInfo(${item.id})" class="bg-black text-white ml-3 mt-3 rounded w-12 h-6">USED</button>
-             </div>
-             <div class="flex h-9 mt-3 mb-3 justify-between">
-               <div class="font-bold" style="font-size: 10px;">
-                 <div>Product name</div>
-                 <div>${item.title}</div>
-               </div>
-               <div class="text-right" style="font-size: 14px;">
-                 <div>Condition</div>
-                 <div>${item.handle}</div>
-               </div>
-             </div>
-             <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded w-full" 
-         onClick="addToCart(${item.id})">
-           ADD TO CART
- </button>
-           </div>
-         `;
-       }).join('');
+    ///пагінація
+     
+ const totalItems = items.length; // Загальна кількість елементів
+ const itemsPerPage = 4; // Кількість елементів на одній сторінці
+ const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
+
+
+
+ function showPage(pageNumber) {
+   
+   const startItem = (pageNumber - 1) * itemsPerPage;//номер першого елементу на сторінці
+   const endItem = startItem + itemsPerPage;//НОМЕР ОСТАННЬОГО ЕЛЕМЕНТУ(ЙОГО НЕ ВКЛЮЧАЕМО)
+  
+   const itemsToShow = items.slice(startItem, endItem);
+  //перш ніж показувати товари видаляемо те що було показано попередньо 
+  itemsContainer.innerHTML=' ';
+   const rows=[]
+   console.log(itemsContainer.innerHTML=' ')
+   for (let i = 0; i < itemsToShow.length; i += 4) {
+    const rowItems = itemsToShow.slice(i, i + 4).map(item => {
+      
+      const item_= itemsToShow[i]
+      
+      return `
+        <div class="item w-full md:w-1/4 lg:w-1/4 p-1 mb-16 " style="height: 402px;">
+          <div class="rounded" style="height: 300px; border: 1px solid black;">
+              <button id="${item_.id}" onClick="showItemInfo(${item_.id})" class="bg-black text-white ml-3 mt-3 rounded w-12 h-6">USED</button>
+          </div>
+          <div class="flex h-9 mt-3 mb-3 justify-between">
+            <div class="font-bold" style="font-size: 10px;">
+              <div>Product name</div>
+              <div>${item_.title}</div>
+            </div>
+            <div class="text-right" style="font-size: 14px;">
+              <div>Condition</div>
+              <div>${item_.handle}</div>
+            </div>
+          </div>
+          <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded w-full" 
+      onClick="addToCart(${item_.id})">
+        ADD TO CART
+</button>
+        </div>
+      `;
+    }).join('');
+
+    rows.push(`<div class="flex">${rowItems}</div>`);
+  }
+  console.log()
+  // itemsContainer.innerHTML="lflfl";
+  // Добавление строк с товарами на страницу
+  
+  itemsContainer.innerHTML = rows.join('');
+ }
+ showPage(1);
  
-       rows.push(`<div class="flex">${rowItems}</div>`);
-     }
+
+ function generatePaginationButtons() {
+   
+   const paginationElement = document.getElementById('pagination');
+   paginationElement.innerHTML = ''; // Очищаем кнопки, которые уже были добавлены
  
-     // Добавление строк с товарами на страницу
-     itemsContainer.innerHTML = rows.join('');
+   for (let i = 1; i <= totalPages; i++) {
+     
+     const button = document.createElement('button');
+     button.classList.add('w-10', 'h-10', 'bg-black', 'text-white', 'rounded-3xl');
+     button.textContent = i;
+     button.addEventListener('click', () => showPage(i));
+     paginationElement.appendChild(button);
+   }
+   
+ }
+ generatePaginationButtons()
+
+
+
 }
 
 /////////////////////відкривати закривати корзину///////////////////////////////////
@@ -197,36 +244,7 @@ function showItemInfo(itemId) {
   });
 }
 
-/////////////пагінація///////////////
-const itemsPerPage = 12; // Кількість елементів на одній сторінці
-const totalItems = items.length; // Загальна кількість елементів
-const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
-
-// Функція для отримання елементів для певної сторінки
-function getItemsForPage(pageNumber) {
-  const startIndex = (pageNumber - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-  return items.slice(startIndex, endIndex);
-}
-
-function showPage(pageNumber) {
-  const itemsToShow = getItemsForPage(pageNumber);
-  const productInformation = document.getElementById('prodact');
-  productInformation.innerHTML = ''; // Очистити попередні відомості
-
-  for (const item of itemsToShow) {
-    // Створити HTML для кожного елемента та додати його до відображення
-    const itemHTML = `
-      <div>
-        <p>Product Name: ${item.title}</p>
-        <p>Description: ${item.description}</p>
-        <!-- Додайте інші відомості про товар, які вам потрібні -->
-      </div>
-    `;
-    productInformation.innerHTML += itemHTML;
-  }
-}
-
+ 
 
 /////////////////відображення всіх елементів json//////////////////////////////
 fetch(jsonFileUrl)
