@@ -13,11 +13,11 @@ function displayItems(items){
      const rows = [];
      for (let i = 0; i < items.length; i += 4) {
        const rowItems = items.slice(i, i + 4).map(item => {
-         // console.log(item.id)
+         
          return `
            <div class="item w-full md:w-1/4 lg:w-1/4 p-1 mb-16 " style="height: 402px;">
              <div class="rounded" style="height: 300px; border: 1px solid black;">
-                 indorm blok
+                 <button id="${item.id}" onClick="showItemInfo(${item.id})" class="bg-black text-white ml-3 mt-3 rounded w-12 h-6">USED</button>
              </div>
              <div class="flex h-9 mt-3 mb-3 justify-between">
                <div class="font-bold" style="font-size: 10px;">
@@ -154,6 +154,24 @@ function removeFromCart(itemId) {
   }
     displayCartItems();
   }
+}
+/////////////////////////відкривання повної інформації про товар//////////////////////
+
+function showItemInfo(itemId){
+  const itemDetailsDiv = document.getElementById('product_information');
+  const closeButton = itemDetailsDiv.querySelector('button');
+
+  window.scrollTo(0, 0);
+
+  itemDetailsDiv.classList.remove('hidden');
+   // Додати обробник для кнопки закриття
+   closeButton.addEventListener('click', () => {
+    // Закрити вікно з інформацією про товар
+    itemDetailsDiv.classList.add('hidden');
+    // Видалити обробник події, щоб не накопичувати багато обробників
+    closeButton.removeEventListener('click', () => {});
+  });
+  
 }
 
 /////////////////відображення всіх елементів json//////////////////////////////

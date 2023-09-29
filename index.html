@@ -8,27 +8,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
 </head>
 <body class="bg-mainColor min-h-screen flex flex-col container mx-auto text-sm" style="font-family: 'Space Grotesk', sans-serif;">
-    <header class="flex justify-between pt-8">
-        <div class="flex">
-            <div class="w-widthV h-heightV">
-                <img src="./img/_2C.png" alt="">
+    <header>
+        
+        <div class="flex justify-between pt-8">
+            <div class="flex">
+                <div class="w-widthV h-heightV">
+                    <img src="./img/_2C.png" alt="">
+                </div>
+                <div class="w-widthVooDoo h-heightVooDoo">
+                    <img src="./img/VooDoo Test.png" alt="">
+                </div>
             </div>
-            <div class="w-widthVooDoo h-heightVooDoo">
-                <img src="./img/VooDoo Test.png" alt="">
+            <div class="flex">
+                <!-- ///////////////////////////// -->
+                <div class="w-widthShop h-heightShop">
+                    <button id="cartButton">
+                        <img src="./img/shopping-cart (1) 1.png" alt="">
+                    </button>
+                </div>
+                <!-- //////////////////////////// -->
+                <button class="w-24 h-9  bg-black hover: text-white rounded ml-12">Sign-up</button>
             </div>
         </div>
-        <div class="flex">
-            <!-- ///////////////////////////// -->
-            <div class="w-widthShop h-heightShop">
-                <button id="cartButton">
-                    <img src="./img/shopping-cart (1) 1.png" alt="">
-                </button>
-            </div>
-            <!-- //////////////////////////// -->
-            <button class="w-24 h-9  bg-black hover: text-white rounded ml-12">Sign-up</button>
-        </div>
+        <!-- ................... -->
+        <div class="bg-black h-0.5 w-full mt-8" style="position: absolute; left: 0;"></div>
+        <!-- ................... -->
     </header>
     <main class="flex-grow-1 mt-20 text-custom">
+        
         <div class="bg-black  h-16 flex">
             <div class="flex items-center justify-center ml-6">
                 <img src="/img/alert-circle.png" alt="">
@@ -47,12 +54,15 @@
             
     </main>
     <footer class="bg-gray-300 py-4 fixed bottom-0 w-full ">
+        <!-- ................... -->
+        <div class="bg-black h-0.5 w-full mt-8" style="position: absolute; left: 0;"></div>
+        <!-- ................... -->
         <div class="container mx-auto">
             footer content
         </div>
     </footer>
     <!--елемент що буде зявлятись коли ми натискаємо на кошик-->
-    <div id="cartOverlay" class="bg-black absolute w-96 h-screen right-0 text-white font-bold flex flex-col justify-between">
+    <div id="cartOverlay" class="hidden bg-black absolute w-96 h-screen right-0 text-white font-bold flex flex-col justify-between">
         <div class="mt-12 mx-9">
           <div>
             <div class="flex justify-between">
@@ -73,6 +83,17 @@
             <div>TOTAL</div>
             <div id="totalAmountDiv"></div>
         </div>
+        </div>
+      </div>
+      <div id="product_information" class="hidden absolute rounded top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-4/6 bg-white border border-black text-black font-bold">
+        <div class="m-10">
+            <div class="flex justify-between">
+                <div>Product information</div>
+                <button class="bg-black w-5 h-5 rounded"><img src="./img/close-line.png"></button>
+            </div>
+            <div class="bg-black h-0.5 mt-5"></div>
+        </div>
+      </div>
         </div>
       </div>
       
