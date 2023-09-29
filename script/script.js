@@ -65,14 +65,30 @@ function displayCartItems(){
         cartItemsContainer.classList.add('hidden');//ховаємо контейнер якщо нема чого показувати
         return
     }
-
     cartItemsContainer.classList.remove('hidden');//показуємо (ховаємо hidden) елементи
 
     //додаємо кожен товар у кошик до відображення
     cart.forEach(itemId => {
         const cartItemDev=document.createElement('div')
         const item =items.find(item=>item.id===itemId)
-        console.log(item)
+
+        if(item){
+            
+            const variants=item.variants[0]
+            cartItemsContainer.innerHTML += `
+                <div class="cart-item flex justify-between">
+                <div class="h-20 w-20 rounded" style="border: 1px solid rgb(255, 255, 255);"></div>
+
+                    <div>
+                        <div>${item.title}</div>
+                        <div>${variants.price}</div>
+                    </div>
+                    <div>
+                        <button onclick="removeFromCart(${itemId})"><img src="./img/Vector.png"></button>
+                    </div>     
+                </div>
+            `;
+        }
     });
 
 }

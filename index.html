@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tailwind</title>
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
 </head>
-<body class="bg-mainColor min-h-screen flex flex-col container mx-auto">
+<body class="bg-mainColor min-h-screen flex flex-col container mx-auto" style="font-family: 'Space Grotesk', sans-serif;">
     <header class="flex justify-between pt-8">
         <div class="flex">
             <div class="w-widthV h-heightV">
@@ -24,7 +25,7 @@
                 </button>
             </div>
             <!-- //////////////////////////// -->
-            <button class="w-24 h-9 bg-black hover:bg-blue-700 text-white rounded ml-12">Sign-up</button>
+            <button class="w-24 h-9 bg-black hover: text-white rounded ml-12">Sign-up</button>
         </div>
     </header>
     <main class="flex-grow-1 mt-20 text-custom">
@@ -51,7 +52,7 @@
         </div>
     </footer>
     <!--елемент що буде зявлятись коли ми натискаємо на кошик-->
-    <div id="cartOverlay" class="hidden bg-black absolute w-96 h-screen right-0 text-white">
+    <div id="cartOverlay" class=" bg-black absolute w-96 h-screen right-0 text-white">
         <div class="mt-12 mx-9">
             <div >
                 <div class="flex justify-between">
@@ -62,10 +63,8 @@
                 </div>
             </div>
             <div class="bg-white h-0.5 w-full"></div>
-            <div id="cartItem" class="mt-10 hidden bg-blue-700 h-3">
-                <!--тут повинні бути елементи які ми доаємо в корзину-->
+            <div id="cartItem" class="mt-10 hidden h-3">
             </div>
-            <div class="bg-white h-0.5 w-full"></div>
         </div>
     </div>
     <script src="script/script.js">
