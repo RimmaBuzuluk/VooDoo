@@ -16,7 +16,7 @@ function displayItems(items){
     ///пагінація
      
  const totalItems = items.length; // Загальна кількість елементів
- const itemsPerPage = 21; // Кількість елементів на одній сторінці
+ const itemsPerPage = 4; // Кількість елементів на одній сторінці
  const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
 
 
@@ -26,6 +26,19 @@ function displayItems(items){
    const startItem = (pageNumber - 1) * itemsPerPage;//номер першого елементу на сторінці
    const endItem = startItem + itemsPerPage;//НОМЕР ОСТАННЬОГО ЕЛЕМЕНТУ(ЙОГО НЕ ВКЛЮЧАЕМО)
   
+   const buttons = document.querySelectorAll('#pagination button');
+  buttons.forEach(button => {
+    button.classList.remove('active-button');
+  });
+
+  // Highlight the clicked button
+  const button = document.getElementById(`page-button-${pageNumber}`);
+  if (button) {
+    button.classList.add('active-button');
+  }
+ 
+
+
    const itemsToShow = items.slice(startItem, endItem);
   //перш ніж показувати товари видаляемо те що було показано попередньо 
   itemsContainer.innerHTML=' ';
@@ -61,9 +74,7 @@ function displayItems(items){
 
     rows.push(`<div class="items-container-flex">${rowItems}</div>`);
   }
-  console.log()
-  // itemsContainer.innerHTML="lflfl";
-  // Добавление строк с товарами на страницу
+  
   
   itemsContainer.innerHTML = rows.join('');
  }
@@ -78,8 +89,15 @@ function displayItems(items){
    for (let i = 1; i <= totalPages; i++) {
      
      const button = document.createElement('button');
-     button.classList.add('w-10', 'h-10', 'bg-black', 'text-white', 'rounded-3xl');
+     button.classList.add('w-10' ,'mx-2', 'h-10', 'bg-white', 'text-black', 'rounded-3xl');
+     button.style.border = '1px solid black';
      button.textContent = i;
+     button.id = `page-button-${i}`;  // Set id for each button
+
+    if (i === 1) {
+      button.classList.add('active-button');  // Add the class to the first button
+    }
+
      button.addEventListener('click', () => showPage(i));
      paginationElement.appendChild(button);
    }
