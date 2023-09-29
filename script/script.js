@@ -240,15 +240,39 @@ function showItemInfo(itemId) {
     }
 
     const productInformation = `
-      <div class="flex justify-between">
-        <div>
-          <div>${selectedItem.title}</div>
-          <div>Published ${selectedItem.published_at}</div>
-          <div>Created ${selectedItem.created_at}</div>
-        </div>
-        <div class="flex">${imagesHTML}</div>
+    <div class="p-4 border border-gray-300 rounded shadow-md">
+    <h2 class="text-xl font-bold mb-2">${selectedItem.title}</h2>
+    <p class="text-sm mb-2">Published: ${selectedItem.published_at}</p>
+    <p class="text-sm mb-2">Created: ${selectedItem.created_at}</p>
+    <p class="text-sm mb-2">Handle: ${selectedItem.handle}</p>
+    <p class="text-sm mb-2">Vendor: ${selectedItem.vendor}</p>
+    <p class="text-sm mb-2">Product Type: ${selectedItem.product_type}</p>
+    <p class="text-sm mb-2">Type: ${selectedItem.type}</p>
+  
+    <h3 class="text-lg font-semibold mt-4 mb-2">Variants:</h3>
+    <ul>
+      <li>
         
-      </div>
+        <ul>
+          <li>Title: ${selectedItem.variants.title}</li>
+          <li>Option 1: ${selectedItem.variants.option1}</li>
+          <li>Option 2: ${selectedItem.variants.option2 || 'N/A'}</li>
+          <li>Option 3: ${selectedItem.variants.option3 || 'N/A'}</li>
+          <li>SKU: ${selectedItem.variants.sku}</li>
+          <!-- Add more variant details as needed -->
+        </ul>
+      </li>
+    </ul>
+  
+    <h3 class="text-lg font-semibold mt-4 mb-2">Images:</h3>
+    <div class="flex flex-wrap gap-2">
+      ${selectedItem.images.map(image => `
+        <div class="w-16 h-16">
+          <img src="${image.src}" alt="Product Image">
+        </div>
+      `).join('')}
+    </div>
+  </div>
     `;
 
     product.innerHTML = productInformation;
