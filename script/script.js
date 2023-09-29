@@ -3,6 +3,7 @@ const jsonFileUrl = 'https://voodoo-sandbox.myshopify.com/products.json?limit=12
 const cartButton = document.getElementById('cartButton');
 const cartOverlay = document.getElementById('cartOverlay');
 const closeButton = document.getElementById('closeButton');
+const totalAmountDiv = document.getElementById('totalAmountDiv')
 let cart=[];
 let items=[];
 const itemQuantities = {}
@@ -67,6 +68,8 @@ function displayCartItems(){
     const cartItemsContainer=document.getElementById('cartItem')
     cartItemsContainer.innerHTML=''
 
+    let totalAmount=0;
+
     if (cart.length===0){
         cartItemsContainer.classList.add('hidden');//ховаємо контейнер якщо нема чого показувати
         return
@@ -75,14 +78,16 @@ function displayCartItems(){
 
     //додаємо кожен товар у кошик до відображення
     cart.forEach(itemId => {
-        const cartItemDev=document.createElement('div')
+        // const cartItemDev=document.createElement('div')
         const item =items.find(item=>item.id===itemId)
         
         if(item){
             const quantity=itemQuantities[item.id]||1
-
-            
             const variants=item.variants[0]
+            const itemPrice=parseFloat(variants.price)*quantity
+
+            totalAmount += itemPrice;
+
             cartItemsContainer.innerHTML += `
                 <div class="cart-item flex justify-between mb-10">
                 <div class="h-20 w-20 rounded" style="border: 1px solid rgb(255, 255, 255);"></div>
@@ -106,6 +111,14 @@ function displayCartItems(){
             `;
         }
     });
+
+    const maxHeight = 700; // Максимальна висота в пікселях
+  const currentHeight = cartItemsContainer.scrollHeight;
+  cartItemsContainer.style.height = currentHeight > maxHeight ? `${maxHeight}px` : 'auto';
+
+  totalAmountDiv.textContent = `${totalAmount} KR`;
+
+  return totalAmount;
 
 }
 
@@ -134,27 +147,14 @@ function removeFromCart(itemId) {
   // Перевіряємо, чи знайдено елемент
   if (index !== -1) {
     cart.splice(index, 1);
+    //робимо значення кількості 0, щоб при повторному додаванні елементу не поверталось старе значення
     const currentQuantity=itemQuantities[itemId] || 1;
   if(currentQuantity>0){
     itemQuantities[itemId]=0
-    console.log(itemQuantities[itemId])
-    
   }
     displayCartItems();
   }
 }
-
-// function updateQuantityDisplay(itemId){
-//   // const quantityElements = document.querySelectorAll(`[data-item-id="${itemId}"] .flex > div:nth-child(2)`);
-
-//   // // Оновлюємо кількість для кожного відображення товару з відповідним itemId
-//   // quantityElements.forEach(element => {
-//   //   element.innerText = quantity;
-   
-//   // });
-
-// }
-
 
 /////////////////відображення всіх елементів json//////////////////////////////
 fetch(jsonFileUrl)

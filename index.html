@@ -33,7 +33,7 @@
             <div class="flex items-center justify-center ml-6">
                 <img src="/img/alert-circle.png" alt="">
             </div>
-            <div class="text-white flex items-center ml-4">ALPHA</div>
+            <div class="text-white flex items-center ml-4 font-bold">ALPHA</div>
             <div class="text-white flex items-center ml-28">Important info regarding our service</div>
         </div>
         <div class="items-container mt-12  ">
@@ -52,21 +52,32 @@
         </div>
     </footer>
     <!--елемент що буде зявлятись коли ми натискаємо на кошик-->
-    <div id="cartOverlay" class=" bg-black absolute w-96 h-screen right-0 text-white">
+    <div id="cartOverlay" class="bg-black absolute w-96 h-screen right-0 text-white font-bold flex flex-col justify-between">
         <div class="mt-12 mx-9">
-            <div >
-                <div class="flex justify-between">
-                    <div class="text-base ">Shopping Cart</div>
-                    <div>
-                        <img src="./img/close-line.png" id="closeButton" >
-                    </div>
-                </div>
+          <div>
+            <div class="flex justify-between">
+              <div class="text-base">Shopping Cart</div>
+              <div>
+                <img src="./img/close-line.png" id="closeButton">
+              </div>
             </div>
-            <div class="bg-white h-0.5 w-full"></div>
-            <div id="cartItem" class="mt-10 hidden h-3">
-            </div>
+          </div>
+          <div class="bg-white h-0.5 w-full"></div>
+          <div id="cartItem" class="mt-10 max-h-screen max-h-screen overflow-y-auto">
+            <!-- Вміст кошика тут -->
+          </div>
         </div>
-    </div>
+        <div id="bascet_footer" class="mx-9 mb-9">
+          <div class="bg-white h-0.5 w-full"></div>
+          <div class="flex justify-between">
+            <div>TOTAL</div>
+            <div id="totalAmountDiv"></div>
+        </div>
+        </div>
+      </div>
+      
+      
+      
     <script src="script/script.js">
     </script>
 </body>
