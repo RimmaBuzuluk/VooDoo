@@ -1,3 +1,6 @@
+//////для того щоб побачити роботу пагінацію на 22 строці треба змінити itemsPerPage = 24; наприкладна 4 або на інше
+//мале число, бо елеметів у файлі json 12, а обмеження кількості елементів на сторінці 24
+
 const itemsContainer = document.querySelector('.items-container');
 const jsonFileUrl = 'https://voodoo-sandbox.myshopify.com/products.json?limit=12';
 const cartButton = document.getElementById('cartButton');
@@ -16,7 +19,7 @@ function displayItems(items){
     ///пагінація
      
  const totalItems = items.length; // Загальна кількість елементів
- const itemsPerPage = 4; // Кількість елементів на одній сторінці
+ const itemsPerPage = 24; // Кількість елементів на одній сторінці
  const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
 
 
