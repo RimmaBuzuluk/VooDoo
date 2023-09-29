@@ -115,7 +115,7 @@ function increaseQuantity(itemId){
   const currentQuantity=itemQuantities[itemId] || 1;
 
   itemQuantities[itemId]=currentQuantity+1
-  // updateQuantityDisplay(itemId);
+ 
   displayCartItems();
 }
 
@@ -123,7 +123,23 @@ function decreaseQuantity(itemId){
   const currentQuantity=itemQuantities[itemId] || 1;
   if(currentQuantity>0){
     itemQuantities[itemId]=currentQuantity-1
-    // updateQuantityDisplay(itemId);
+    console.log(itemQuantities[itemId])
+    displayCartItems();
+  }
+}
+
+function removeFromCart(itemId) {
+  const index = cart.indexOf(itemId);
+  
+  // Перевіряємо, чи знайдено елемент
+  if (index !== -1) {
+    cart.splice(index, 1);
+    const currentQuantity=itemQuantities[itemId] || 1;
+  if(currentQuantity>0){
+    itemQuantities[itemId]=0
+    console.log(itemQuantities[itemId])
+    
+  }
     displayCartItems();
   }
 }
