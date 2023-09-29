@@ -157,22 +157,46 @@ function removeFromCart(itemId) {
 }
 /////////////////////////відкривання повної інформації про товар//////////////////////
 
-function showItemInfo(itemId){
+function showItemInfo(itemId) {
   const itemDetailsDiv = document.getElementById('product_information');
   const closeButton = itemDetailsDiv.querySelector('button');
+  const product = document.getElementById('prodact'); // Typo corrected to 'product'
+
+  const selectedItem = items.find(item => item.id === itemId);
+
+  if (selectedItem) {
+    let imagesHTML = '';
+
+    // Check if the image has a valid src and only display it if it does
+    for (const image of selectedItem.images) {
+      if (image.src) {
+        imagesHTML += `<div class="w-16 h-16"><img src="${image.src}" alt="${selectedItem.title}"></div>`;
+      }
+    }
+
+    const productInformation = `
+      <div class="flex justify-between">
+        <div>
+          <div>${selectedItem.title}</div>
+          <div>Published ${selectedItem.published_at}</div>
+          <div>Created ${selectedItem.created_at}</div>
+        </div>
+        <div class="flex">${imagesHTML}</div>
+        
+      </div>
+    `;
+
+    product.innerHTML = productInformation;
+  }
 
   window.scrollTo(0, 0);
-
   itemDetailsDiv.classList.remove('hidden');
-   // Додати обробник для кнопки закриття
-   closeButton.addEventListener('click', () => {
-    // Закрити вікно з інформацією про товар
+
+  closeButton.addEventListener('click', () => {
     itemDetailsDiv.classList.add('hidden');
-    // Видалити обробник події, щоб не накопичувати багато обробників
-    closeButton.removeEventListener('click', () => {});
   });
-  
 }
+
 
 /////////////////відображення всіх елементів json//////////////////////////////
 fetch(jsonFileUrl)

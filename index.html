@@ -6,6 +6,36 @@
     <title>tailwind</title>
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 767px) {
+          .items-container {
+            background-color: aquamarine;
+      text-align: center; /* Центрируем элементы в ряду */
+          }
+          .item {
+            display: inline-block;
+      width: 100%; /* Каждый элемент занимает 100% ширины родительского блока */
+      box-sizing: border-box;
+      padding: 10px; /* Примерный отступ между элементами */
+      margin: 0; /* Убираем внешние отступы у элемента */
+        background-color: blue;
+          }
+        }
+      
+        @media (min-width: 768px) {
+          .items-container {
+            background-color: brown;
+      text-align: left; /* Выравниваем элементы слева для больших экранов */
+          }
+          .item{
+            /* width: calc(25% - 10px); /* Элемент занимает примерно 1/4 ширины родительского контейнера с отступами */
+        /* box-sizing: border-box;
+        padding: 10px;
+        margin: 0 10px 10px 0; */ 
+        background-color: yellow;
+          }
+        }
+      </style>
 </head>
 <body class="bg-mainColor min-h-screen flex flex-col container mx-auto text-sm" style="font-family: 'Space Grotesk', sans-serif;">
     <header>
@@ -92,6 +122,9 @@
                 <button class="bg-black w-5 h-5 rounded"><img src="./img/close-line.png"></button>
             </div>
             <div class="bg-black h-0.5 mt-5"></div>
+            <div id="prodact">
+                тут надо вставить информацию про продукт на который ми нажали
+            </div>
         </div>
       </div>
         </div>
