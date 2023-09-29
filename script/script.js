@@ -16,7 +16,7 @@ function displayItems(items){
     ///пагінація
      
  const totalItems = items.length; // Загальна кількість елементів
- const itemsPerPage = 4; // Кількість елементів на одній сторінці
+ const itemsPerPage = 21; // Кількість елементів на одній сторінці
  const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
 
 
@@ -39,20 +39,20 @@ function displayItems(items){
       return `
         <div class="item w-full md:w-1/4 lg:w-1/4 p-1 mb-16 " style="height: 402px;">
           <div class="rounded" style="height: 300px; border: 1px solid black;">
-              <button id="${item_.id}" onClick="showItemInfo(${item_.id})" class="bg-black text-white ml-3 mt-3 rounded w-12 h-6">USED</button>
+              <button id="${item.id}" onClick="showItemInfo(${item.id})" class="bg-black text-white ml-3 mt-3 rounded w-12 h-6">USED</button>
           </div>
           <div class="flex h-9 mt-3 mb-3 justify-between">
             <div class="font-bold" style="font-size: 10px;">
               <div>Product name</div>
-              <div>${item_.title}</div>
+              <div>${item.title}</div>
             </div>
             <div class="text-right" style="font-size: 14px;">
               <div>Condition</div>
-              <div>${item_.handle}</div>
+              <div>${item.handle}</div>
             </div>
           </div>
           <button class="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded w-full" 
-      onClick="addToCart(${item_.id})">
+      onClick="addToCart(${item.id})">
         ADD TO CART
 </button>
         </div>
@@ -254,5 +254,3 @@ fetch(jsonFileUrl)
     displayItems(items)
   })
   .catch(error => console.error('Ошибка при загрузке данных из JSON:', error));
-
-
