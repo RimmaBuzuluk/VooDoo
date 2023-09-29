@@ -54,6 +54,11 @@ closeButton.addEventListener('click', () => {
 ///////////////////////////////////////////////////////////////
 
 function addToCart(itemId){
+  if(cart.includes(itemId)){
+    console.log("товар уже есть в корине ");
+    increaseQuantity(itemId);
+    return;
+  }
     cart.push(itemId);
     displayCartItems();
 }
