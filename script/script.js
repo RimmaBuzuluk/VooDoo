@@ -197,6 +197,36 @@ function showItemInfo(itemId) {
   });
 }
 
+/////////////пагінація///////////////
+const itemsPerPage = 12; // Кількість елементів на одній сторінці
+const totalItems = items.length; // Загальна кількість елементів
+const totalPages = Math.ceil(totalItems / itemsPerPage); // Загальна кількість сторінок
+
+// Функція для отримання елементів для певної сторінки
+function getItemsForPage(pageNumber) {
+  const startIndex = (pageNumber - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+  return items.slice(startIndex, endIndex);
+}
+
+function showPage(pageNumber) {
+  const itemsToShow = getItemsForPage(pageNumber);
+  const productInformation = document.getElementById('prodact');
+  productInformation.innerHTML = ''; // Очистити попередні відомості
+
+  for (const item of itemsToShow) {
+    // Створити HTML для кожного елемента та додати його до відображення
+    const itemHTML = `
+      <div>
+        <p>Product Name: ${item.title}</p>
+        <p>Description: ${item.description}</p>
+        <!-- Додайте інші відомості про товар, які вам потрібні -->
+      </div>
+    `;
+    productInformation.innerHTML += itemHTML;
+  }
+}
+
 
 /////////////////відображення всіх елементів json//////////////////////////////
 fetch(jsonFileUrl)

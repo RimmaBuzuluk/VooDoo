@@ -9,7 +9,7 @@
     <style>
         @media (max-width: 767px) {
           .items-container {
-            background-color: aquamarine;
+            /* background-color: aquamarine; */
       text-align: center; /* Центрируем элементы в ряду */
           }
           .item {
@@ -18,13 +18,13 @@
       box-sizing: border-box;
       padding: 10px; /* Примерный отступ между элементами */
       margin: 0; /* Убираем внешние отступы у элемента */
-        background-color: blue;
+        /* background-color: blue; */
           }
         }
       
         @media (min-width: 768px) {
           .items-container {
-            background-color: brown;
+            /* background-color: brown; */
       text-align: left; /* Выравниваем элементы слева для больших экранов */
           }
           .item{
@@ -32,7 +32,7 @@
         /* box-sizing: border-box;
         padding: 10px;
         margin: 0 10px 10px 0; */ 
-        background-color: yellow;
+        /* background-color: yellow; */
           }
         }
       </style>
@@ -76,8 +76,13 @@
         <div class="items-container mt-12  ">
                 <!-- Это место предназначено для отображения товаров -->
         </div>
-        <div class="mb-24">
-            
+        <div class="mb-24 flex flex-wrap justify-center">
+            <div class="pagination mt-4 w-80 h-10" >
+            <!-- Генеруємо номера сторінок -->
+                <button class="bg-black text-white w-10 h-10 rounded-3xl" onclick="showPage(1)">1</button>
+                <button class="w-10 h-10 bg-black text-white rounded-3xl" onclick="showPage(2)">2</button>
+            <!-- Додайте інші номери сторінок в залежності від загальної кількості -->
+            </div>
         </div>
             
     </main>
